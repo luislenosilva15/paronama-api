@@ -8,10 +8,6 @@ app.use(express.urlencoded({ extended: true }))
 
 require('./src/controllers/categoryController')(app);
 
-app.get('/', (req, res) => {
-  res.send('Hello')
-})
-
 const server = http.createServer(app);
 
 server.listen(3000)
