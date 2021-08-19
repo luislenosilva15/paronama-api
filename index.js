@@ -6,7 +6,10 @@ const http = require('http')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-require('./src/controllers/categoryController')(app);
+
+app.get('/', async (req, res) => {
+    res.send('Hiii')
+})
 
 const server = http.createServer(app);
 
