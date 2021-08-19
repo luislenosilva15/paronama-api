@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/asset',express.static(__dirname + '/asset'))
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('api panorama3d ')
 })
 
 require('./src/controllers/categoryController')(app);
