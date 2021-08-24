@@ -10,7 +10,6 @@ router.post('/register', upload.array('files', 2), async (req, res) => {
 
     const fileUri = req.files[0].filename;
     const image = req.files[1].filename;
-
     try {
 
         const furniture = Object.assign(req.body, { fileUri, image });

@@ -15,11 +15,11 @@ const furnitureSchema = new db.Schema({
     },
 
     avaliation: {
-        type: String,
+        type: Number,
     },
 
     price: {
-        type: String,
+        type: Number,
     }
 
 });
