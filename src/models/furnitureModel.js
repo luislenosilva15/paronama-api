@@ -19,7 +19,7 @@ const furnitureSchema = new db.Schema({
     },
 
     price: {
-        type: Number,
+        type: Decimal128,
     }
 
 });

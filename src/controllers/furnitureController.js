@@ -10,12 +10,22 @@ router.post('/register', upload.array('files', 2), async (req, res) => {
 
     const fileUri = req.files[0].filename;
     const image = req.files[1].filename;
+    const { description, category } = req.body;
+
+    const avaliation = parseInt(req.body.avaliation);
+    const priceString = parseFloat(req.body.price).toFixed(2);
+    const price = parseFloat(priceString)
+
+    // console.log(typeof price)
     try {
 
-        const furniture = Object.assign(req.body, { fileUri, image });
-        const category = furniture.category;
+        // const furniture = Object.assign(req.body, { fileUri, image });
+        const furniture = { fileUri, image, description, avaliation, price, category };
+
+        // const category = furniture.category;
 
         delete furniture.category;
+
 
         Category.findOneAndUpdate(
 
