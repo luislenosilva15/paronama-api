@@ -4,7 +4,7 @@ var path = require('path');
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, path.resolve(__dirname, '..', '..', './asset', './furnitures'));
+        cb(null, path.resolve(__dirname, '..', '..', './assets'));
     },
     filename: function (req, file, cb) {
         let extArray = file.mimetype.split("/");

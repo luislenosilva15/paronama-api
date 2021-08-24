@@ -2,11 +2,7 @@ const db = require('../services/db');
 
 const furnitureSchema = new db.Schema({
 
-    sku: {
-        type: String,
-    },
-
-    name: {
+    fileUri: {
         type: String,
     },
 
@@ -14,9 +10,17 @@ const furnitureSchema = new db.Schema({
         type: String,
     },
 
-    fileUri: {
+    image: {
         type: String,
     },
+
+    avaliation: {
+        type: String,
+    },
+
+    price: {
+        type: String,
+    }
 
 });
 

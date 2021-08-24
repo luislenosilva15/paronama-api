@@ -1,44 +1,37 @@
 const express = require('express');
 const router = express.Router();
-
 const Category = require('../models/categoryModel');
-const fs = require('fs');
 const storage = require('../services/storageService');
 const multer = require('multer');
 const upload = multer({ storage });
 
 //INSERIR NOVA MOBILIA
-router.post('/register', upload.single('file'), async (req, res) => {
+router.post('/register', upload.array('files', 2), async (req, res) => {
 
-    const { sku, category } = req.body;
+    const fileUri = req.files[0].filename;
+    const image = req.files[1].filename;
 
     try {
-        //Verificar se sku já existe
-        if (await Category.aggregate([{ $match: { 'items.sku': sku } }]) == '') {
 
-            const fileUri = req.file.filename;
-            const furniture = Object.assign(req.body, { fileUri });
+        const furniture = Object.assign(req.body, { fileUri, image });
+        const category = furniture.category;
 
-            delete furniture.category
+        delete furniture.category;
 
-            Category.findOneAndUpdate(
+        Category.findOneAndUpdate(
 
-                { name: category },
-                { $push: { items: furniture } },
-                function (error, success) {
-                    if (success) {
-                        console.log("sucess")
-                    } else {
-                        console.log("error")
-                    }
-                });
+            { name: category },
+            { $push: { items: furniture } },
+            function (error, success) {
+                if (success) {
+                    console.log("sucess")
+                } else {
+                    console.log("error")
+                }
+            });
 
-            return res.status(200).send({ "message": "Mobilia cadastrada com suceso" })
+        return res.status(200).send({ "message": "Mobilia cadastrada com suceso" })
 
-        } else {
-
-            return res.status(400).send({ "message": "Já existe um produto registrado com este sku" })
-        }
     } catch {
 
         return res.status(400).send({ "message": "Error" })

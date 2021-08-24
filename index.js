@@ -5,7 +5,7 @@ const port = process.env.PORT || 3000
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use('/asset',express.static(__dirname + '/asset'))
+app.use('/assets',express.static(__dirname + '/assets'))
 
 app.get('/', (req, res) => {
   res.send('api panorama3d ')
